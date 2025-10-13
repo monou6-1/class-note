@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Class note</title>
+  <link href="https://fonts.googleapis.com/css2?family=Kaisei+Opti:wght@400;700&family=Space+Mono&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    body {
+      font-family: 'Kaisei Opti', serif;
+      background: linear-gradient(135deg, #a0e7e5, #b2f2bb);
+      color: #2e8b57;
+      text-align: center;
+      padding: 60px 20px;
+      margin: 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .tree-left, .tree-right {
+      position: absolute;
+      bottom: 0;
+      width: 30%;
+      height: 70%;
+      background: radial-gradient(ellipse at 50% 70%, #8B4513, #5C3317),
+                  radial-gradient(circle at 50% 40%, #228B22, #006400);
+      border-radius: 60% 60% 40% 40% / 80% 80% 40% 40%;
+      z-index: 1;
+    }
+    .tree-left { left: 10%; transform: scaleX(-1); }
+    .tree-right { right: 10%; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    .cloud {
+      position: absolute;
+      top: 10%;
+      width: 100px;
+      height: 60px;
+      background: white;
+      border-radius: 50px;
+      box-shadow: 20px 0 20px -10px rgba(0,0,0,0.1);
+      opacity: 0.9;
+      animation: float 8s ease-in-out infinite;
+    }
+    .cloud:nth-child(1) { left: 20%; animation-delay: 0s; }
+    .cloud:nth-child(2) { left: 50%; animation-delay: 2s; }
+    .cloud:nth-child(3) { left: 80%; animation-delay: 4s; }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 50px 40px;
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+    h1 {
+      font-family: 'Space Mono', monospace;
+      font-size: 3.5em;
+      margin-bottom: 16px;
+      color: #2c7a7b;
+      letter-spacing: 2px;
+    }
+    p {
+      font-size: 1.2em;
+      color: #333;
+      margin-bottom: 30px;
+    }
+    button {
+      background-color: #a0d8f1;
+      color: #0066cc;
+      border: none;
+      padding: 14px 28px;
+      font-size: 1.1em;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 10px 10px;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background-color: #87c5e6;
+    }
+  </style>
+</head>
+<body>
+  <div class="cloud"></div>
+  <div class="cloud"></div>
+  <div class="cloud"></div>
+  <div class="tree-left"></div>
+  <div class="tree-right"></div>
+
+  <div class="container">
+    <h1>Class note</h1>
+    <p>クラスのみんなとつながる、やさしいSNS</p>
+    <button onclick="location.href='login.html'">ログイン</button>
+    <button onclick="location.href='signup.html'">新規登録</button>
+  </div>
+</body>
+</html>   
