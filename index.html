@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Class note</title>
   <link href="https://fonts.googleapis.com/css2?family=Kaisei+Opti:wght@400;700&family=Space+Mono&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
     body {
       font-family: 'Kaisei Opti', serif;
@@ -18,23 +17,6 @@
       position: relative;
     }
 
-    .tree-left, .tree-right {
-      position: absolute;
-      bottom: 0;
-      width: 30%;
-      height: 70%;
-      background: radial-gradient(ellipse at 50% 70%, #8B4513, #5C3317),
-                  radial-gradient(circle at 50% 40%, #228B22, #006400);
-      border-radius: 60% 60% 40% 40% / 80% 80% 40% 40%;
-      z-index: 1;
-    }
-    .tree-left { left: 10%; transform: scaleX(-1); }
-    .tree-right { right: 10%; }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
-    }
     .cloud {
       position: absolute;
       top: 10%;
@@ -49,6 +31,10 @@
     .cloud:nth-child(1) { left: 20%; animation-delay: 0s; }
     .cloud:nth-child(2) { left: 50%; animation-delay: 2s; }
     .cloud:nth-child(3) { left: 80%; animation-delay: 4s; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
 
     .container {
       position: relative;
@@ -56,7 +42,7 @@
       max-width: 500px;
       margin: 0 auto;
       padding: 50px 40px;
-      background: white;
+      background: rgba(255, 255, 255, 0.8);
       border-radius: 24px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.15);
     }
@@ -74,7 +60,8 @@
     }
     button {
       background-color: #a0d8f1;
-      color: #0066cc;
+      color: white;
+      font-family: 'Kaisei Opti', serif;
       border: none;
       padding: 14px 28px;
       font-size: 1.1em;
@@ -92,8 +79,6 @@
   <div class="cloud"></div>
   <div class="cloud"></div>
   <div class="cloud"></div>
-  <div class="tree-left"></div>
-  <div class="tree-right"></div>
 
   <div class="container">
     <h1>Class note</h1>
