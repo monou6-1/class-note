@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>ログイン - Class note</title>
+  <link href="https://fonts.googleapis.com/css2?family=Kaisei+Opti:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Kaisei Opti', serif;
+      background: #b2f2bb;
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 40px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    button {
+      background: #2e8b57;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Class note</h1>
+    <p>ログイン</p>
+    <form id="login-form">
+      <input type="text" id="name" placeholder="名前" required />
+      <input type="password" id="password" placeholder="パスワード" required />
+      <button type="submit">ログイン</button>
+    </form>
+    <p><a href="signup.html">新規登録</a> | <a href="index.html">トップへ</a></p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const supabase = supabase.createClient(
+      'https://anfzvvmewzawadrwqsjw.supabase.co/',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFuZnp2dm1ld3phd2Fkcndxc2p3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjAzMDQzNzYsImV4cCI6MjA3NTg4MDM3Nn0.YEyT-Uc41h0sPhNRkC_d-U18zp7F3uWtFaLBvC9J4SU'
+    );
+
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const password = document.getElementById('password').value;
+      const email = `${name}@monou.com`;
+
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) {
+        alert('ログイン失敗: ' + error.message);
+      } else {
+        alert(`${name}さん、ログインしました`);
+        window.location.href = 'home.html';
+      }
+    });
+  </script>
+</body>
+</html>   
