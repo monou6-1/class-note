@@ -17,12 +17,22 @@
   <input type="password" id="password" value="Password1234" />
   <button id="signup-btn">登録</button>
 
-  <!-- ここで supabase-js を読み込み -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
-    // DOMが読み込まれた後に実行
+    const supabase = supabase.createClient('https://anfzvvmewzawadrwqsjw.supabase.co/', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFuZnp2dm1ld3phd2Fkcndxc2p3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjAzMDQzNzYsImV4cCI6MjA3NTg4MDM3Nn0.YEyT-Uc41h0sPhNRkC_d-U18zp7F3uWtFaLBvC9J4SU');
+
     document.getElementById('signup-btn').addEventListener('click', async () => {
-      alert('ボタンが動いた！'); // まずこれが出るか確認
+      alert('登録中...');
+      const name = document.getElementById('name').value;
+      const password = document.getElementById('password').value;
+      const email = `${name}${Math.floor(Math.random() * 9000 + 1000)}@monou.com`;
+
+      const { data, error } = await supabase.auth.signUp({ email, password });
+      if (error) {
+        alert('エラー: ' + error.message);
+      } else {
+        alert('登録成功！');
+      }
     });
   </script>
 </body>
