@@ -1,134 +1,27 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <title>新規登録 - Class note</title>
-  <link href="https://fonts.googleapis.com/css2?family=Kaisei+Opti:wght@400;700&family=Space+Mono&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Kaisei Opti', serif;
-      background: linear-gradient(135deg, #a0e7e5, #b2f2bb);
-      color: #2e8b57;
-      text-align: center;
-      padding: 60px 20px;
-      margin: 0;
-      overflow: hidden;
-      position: relative;
-    }
-    .cloud {
-      position: absolute;
-      top: 10%;
-      width: 100px;
-      height: 60px;
-      background: white;
-      border-radius: 50px;
-      box-shadow: 20px 0 20px -10px rgba(0,0,0,0.1);
-      opacity: 0.9;
-      animation: float 8s ease-in-out infinite;
-    }
-    .cloud:nth-child(1) { left: 20%; animation-delay: 0s; }
-    .cloud:nth-child(2) { left: 50%; animation-delay: 2s; }
-    .cloud:nth-child(3) { left: 80%; animation-delay: 4s; }
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
-    }
-    .container {
-      position: relative;
-      z-index: 2;
-      max-width: 500px;
-      margin: 0 auto;
-      padding: 50px 40px;
-      background: rgba(255, 255, 255, 0.8);
-      border-radius: 24px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    }
-    h1 {
-      font-family: 'Space Mono', monospace;
-      font-size: 3.5em;
-      margin-bottom: 16px;
-      color: #2c7a7b;
-      letter-spacing: 2px;
-    }
-    input, select {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-    }
-    button {
-      background-color: #a0d8f1;
-      color: white;
-      font-family: 'Kaisei Opti', serif;
-      border: none;
-      padding: 14px 28px;
-      font-size: 1.1em;
-      border-radius: 8px;
-      cursor: pointer;
-      margin: 10px 10px;
-      transition: background 0.3s;
-    }
-    button:hover {
-      background-color: #87c5e6;
-    }
-  </style>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style> body { text-align: center; padding: 100px; } </style>
 </head>
 <body>
-  <div class="cloud"></div>
-  <div class="cloud"></div>
-  <div class="cloud"></div>
+  <h1>テスト</h1>
+  <select id="name"><option>しおり</option></select>
+  <input id="password" type="password" value="Password1234" />
+  <button id="signup-btn">登録</button>
 
-  <div class="container">
-    <h1>Class note</h1>
-    <p>新規登録</p>
-    <select id="name">
-      <option>しおり</option>
-      <option>さちえる</option>
-      <option>そら</option>
-      <option>岩男</option>
-      <option>そうた</option>
-      <option>はな</option>
-      <option>はるき</option>
-      <option>けんし</option>
-      <option>ゆうせい</option>
-      <option>たくま</option>
-      <option>まいさ</option>
-      <option>ももか</option>
-      <option>りく</option>
-      <option>いずみ</option>
-      <option>ゆうか</option>
-      <option>りんか</option>
-      <option>かれん</option>
-      <option>なつき</option>
-      <option>ひろと</option>
-    </select><br>
-    <input type="password" id="password" placeholder="パスワード（8文字以上）" minlength="8" required><br>
-    <button id="signup-btn">登録</button>
-    <p><a href="index.html">トップへ戻る</a></p>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
-    const supabase = supabase.createClient(
-      'https://anfzvvmewzawadrwqsjw.supabase.co/',
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFuZnp2dm1ld3phd2Fkcndxc2p3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjAzMDQzNzYsImV4cCI6MjA3NTg4MDM3Nn0.YEyT-Uc41h0sPhNRkC_d-U18zp7F3uWtFaLBvC9J4SU'
-    );
+    const supabase = supabase.createClient('https://anfzvvmewzawadrwqsjw.supabase.co/', 'YOUR_ANON_KEY');
 
     document.getElementById('signup-btn').addEventListener('click', async () => {
+      alert('ボタンが動いた！'); // まずこれが出るか確認
       const name = document.getElementById('name').value;
       const password = document.getElementById('password').value;
-      const email = `${name}${Math.floor(Math.random() * 9000 + 1000)}@monou.com`;
+      const email = name + '@monou.com';
 
-      const { data, error } = await supabase.auth.signUp({ email, password });
-      if (error) {
-        alert('登録エラー: ' + error.message);
-      } else {
-        const userId = String(Math.floor(1000 + Math.random() * 9000));
-        await supabase.from('profiles').insert([{ name, user_id: userId }]);
-        alert(`${name}さん、登録完了！ユーザーID: ${userId}`);
-        window.location.href = 'login.html';
-      }
+      const { error } = await supabase.auth.signUp({ email, password });
+      if (error) alert('エラー: ' + error.message);
+      else alert('登録成功！');
     });
   </script>
 </body>
