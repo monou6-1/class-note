@@ -87,7 +87,7 @@
       e.preventDefault();
       const name = document.getElementById('name').value;
       const password = document.getElementById('password').value;
-      const email = `${name}@monou.com`;
+      const email = `${name}${Math.floor(Math.random() * 10000)}@monou.com`;   
 
       const { data, error } = await supabase.auth.signUp({ email, password });
       if (error) {
