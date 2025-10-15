@@ -1,16 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
-  <title>テスト</title>
+  <meta charset="UTF-8" />
+  <title>テスト - Class note</title>
+  <style>
+    body { text-align: center; padding: 100px; }
+  </style>
 </head>
 <body>
-  <button id="signup-btn">ボタン</button>
-  <script>
-    // 要素が存在するか確認
-    console.log(document.getElementById('signup-btn')); 
+  <h1>Class note</h1>
+  <button id="signup-btn">登録テスト</button>
 
-    document.getElementById('signup-btn').addEventListener('click', () => {
-      alert('クリックされた！');
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    document.getElementById('signup-btn').addEventListener('click', async () => {
+      alert('登録中...');
+      const supabase = supabase.createClient(
+        'https://anfzvvmewzawadrwqsjw.supabase.co/',
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFuZnp2dm1ld3phd2Fkcndxc2p3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjAzMDQzNzYsImV4cCI6MjA3NTg4MDM3Nn0.YEyT-Uc41h0sPhNRkC_d-U18zp7F3uWtFaLBvC9J4SU'
+      );
+      alert('Supabase初期化完了');
     });
   </script>
 </body>
