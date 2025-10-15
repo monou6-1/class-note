@@ -1,27 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <style> body { text-align: center; padding: 100px; } </style>
+  <meta charset="UTF-8" />
+  <title>新規登録 - Class note</title>
+  <link href="https://fonts.googleapis.com/css2?family=Kaisei+Opti:wght@400;700&family=Space+Mono&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Kaisei Opti', serif; text-align: center; padding: 50px; }
+    h1 { font-family: 'Space Mono', monospace; }
+    button { padding: 12px 24px; font-size: 16px; }
+  </style>
 </head>
 <body>
-  <h1>テスト</h1>
+  <h1>Class note</h1>
+  <p>新規登録</p>
   <select id="name"><option>しおり</option></select>
-  <input id="password" type="password" value="Password1234" />
+  <input type="password" id="password" value="Password1234" />
   <button id="signup-btn">登録</button>
 
+  <!-- ここで supabase-js を読み込み -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
-    const supabase = supabase.createClient('https://anfzvvmewzawadrwqsjw.supabase.co/', 'YOUR_ANON_KEY');
-
+    // DOMが読み込まれた後に実行
     document.getElementById('signup-btn').addEventListener('click', async () => {
       alert('ボタンが動いた！'); // まずこれが出るか確認
-      const name = document.getElementById('name').value;
-      const password = document.getElementById('password').value;
-      const email = name + '@monou.com';
-
-      const { error } = await supabase.auth.signUp({ email, password });
-      if (error) alert('エラー: ' + error.message);
-      else alert('登録成功！');
     });
   </script>
 </body>
