@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>新規登録 - Class note</title>
+  <link href="https://fonts.googleapis.com/css2?family=Kaisei+Opti:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Kaisei Opti', serif;
+      background: #b2f2bb;
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 40px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    button {
+      background: #2e8b57;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Class note</h1>
+    <p>新規登録</p>
+    <form id="signup-form">
+      <select id="name" required>
+        <option value="">名前を選んでください</option>
+        <option>しおり</option>
+        <option>さちえる</option>
+        <option>そら</option>
+        <option>岩男</option>
+        <option>そうた</option>
+        <option>はな</option>
+        <option>はるき</option>
+        <option>けんし</option>
+        <option>ゆうせい</option>
+        <option>たくま</option>
+        <option>まいさ</option>
+        <option>ももか</option>
+        <option>りく</option>
+        <option>いずみ</option>
+        <option>ゆうか</option>
+        <option>りんか</option>
+        <option>かれん</option>
+        <option>なつき</option>
+        <option>ひろと</option>
+      </select>
+      <input type="password" id="password" placeholder="パスワード（8文字以上）" minlength="8" required />
+      <button type="submit">登録</button>
+    </form>
+    <p><a href="index.html">トップへ戻る</a></p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const supabase = supabase.createClient('YOUR_SUPABASE_URL', 'YOUR_SUPABASE_ANON_KEY');
+
+    document.getElementById('signup-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const password = document.getElementById('password').value;
+      const email = `${name}@monou.com`; // ダミーメール
+
+      const { data, error } = await supabase.auth.signUp({ email, password });
+      if (error) {
+        alert('登録失敗: ' + error.message);
+      } else {
+        // ランダム4桁ID生成
+        const userId = String(Math.floor(1000 + Math.random() * 9000));
+        // profilesテーブルに保存（SupabaseのTable Editorで作成済み想定）
+        await supabase.from('profiles').insert([{ name, user_id: userId }]);
+        alert(`${name}さん、登録完了！ユーザーID: ${userId}`);
+        window.location.href = 'login.html';
+      }
+    });
+  </script>
+</body>
+</html>   
