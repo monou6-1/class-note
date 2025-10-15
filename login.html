@@ -19,7 +19,7 @@
       border-radius: 20px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
-    input {
+    input, select {
       width: 100%;
       padding: 12px;
       margin: 10px 0;
@@ -34,6 +34,13 @@
       border-radius: 8px;
       cursor: pointer;
     }
+    h1 {
+      font-family: 'Space Mono', monospace;
+      font-size: 3.5em;
+      margin-bottom: 16px;
+      color: #2c7a7b;
+      letter-spacing: 2px;
+    }
   </style>
 </head>
 <body>
@@ -41,7 +48,28 @@
     <h1>Class note</h1>
     <p>ログイン</p>
     <form id="login-form">
-      <input type="text" id="name" placeholder="名前" required />
+      <select id="name" required>
+        <option value="">名前を選んでください</option>
+        <option>しおり</option>
+        <option>さちえる</option>
+        <option>そら</option>
+        <option>岩男</option>
+        <option>そうた</option>
+        <option>はな</option>
+        <option>はるき</option>
+        <option>けんし</option>
+        <option>ゆうせい</option>
+        <option>たくま</option>
+        <option>まいさ</option>
+        <option>ももか</option>
+        <option>りく</option>
+        <option>いずみ</option>
+        <option>ゆうか</option>
+        <option>りんか</option>
+        <option>かれん</option>
+        <option>なつき</option>
+        <option>ひろと</option>
+      </select>
       <input type="password" id="password" placeholder="パスワード" required />
       <button type="submit">ログイン</button>
     </form>
