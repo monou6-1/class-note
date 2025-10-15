@@ -16,7 +16,6 @@
       overflow: hidden;
       position: relative;
     }
-
     .cloud {
       position: absolute;
       top: 10%;
@@ -35,7 +34,6 @@
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-20px); }
     }
-
     .container {
       position: relative;
       z-index: 2;
@@ -86,5 +84,19 @@
     <button onclick="location.href='login.html'">ログイン</button>
     <button onclick="location.href='signup.html'">新規登録</button>
   </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const supabase = supabase.createClient(
+      'https://anfzvvmewzawadrwqsjw.supabase.co/',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFuZnp2dm1ld3phd2Fkcndxc2p3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjAzMDQzNzYsImV4cCI6MjA3NTg4MDM3Nn0.YEyT-Uc41h0sPhNRkC_d-U18zp7F3uWtFaLBvC9J4SU'
+    );
+
+    supabase.auth.getSession().then(({ data }) => {
+      if (data.session) {
+        window.location.href = 'home.html';
+      }
+    });
+  </script>
 </body>
 </html>   
